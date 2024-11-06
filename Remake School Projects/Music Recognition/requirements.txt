@@ -1,0 +1,6 @@
+numpy
+pandas
+librosa
+pydub
+mysql-connector-python
+matplotlib

@@ -18,9 +18,9 @@ This Music Recognition project identifies songs and predicts genres using audio 
 
 ## Setup and Requirements
 
-1. **Python Packages**: Install the following packages:
+1. **Python Packages**: Install the required packages using `requirements.txt`:
    ```bash
-   pip install numpy pandas librosa pydub mysql-connector-python matplotlib
+   pip install -r requirements.txt
    ```
 
 2. **MySQL Setup**: Configure the MySQL database in `main.py`:
