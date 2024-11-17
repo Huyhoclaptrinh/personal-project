@@ -30,6 +30,10 @@ df = processor.train_kmeans()
 # if not df.empty:
 processor.plot_clustering(df)
 
+# Evaluate clustering quality using multiple metrics
+if df is not None:
+    processor.evaluate_clustering_extended(df)
+
 # Predict the genre for a new audio file
 predicted_genre = processor.predict_genre(r"C:\Users\admin\Downloads\Death Parade - Opening _ Flyers [ ezmp3.cc ].mp3")
 print(f"Predicted genre: {predicted_genre}")

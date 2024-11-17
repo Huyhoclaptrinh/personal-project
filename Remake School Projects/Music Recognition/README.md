@@ -69,3 +69,38 @@ print(f"Recognized Song: {recognized_song}")
 ## License
 
 This project is provided as-is for educational purposes.
+
+## Evaluation of KMeans Clustering
+
+### Metrics and Results
+After training the KMeans clustering model on the extracted audio features, the following evaluation metrics were calculated:
+
+1. **Silhouette Score**: **0.6598**
+   - This metric measures how well-separated the clusters are.
+   - A value close to **1** indicates strong clustering quality, with clear separation between clusters.
+   - The score of **0.6598** suggests good clustering performance with meaningful groupings.
+
+2. **Davies-Bouldin Index**: **0.3756**
+   - This index evaluates the ratio of intra-cluster distances to inter-cluster distances.
+   - Lower values represent more distinct and compact clusters.
+   - A value of **0.3756** indicates well-separated clusters with minimal overlap.
+
+3. **Calinski-Harabasz Index**: **134.6314**
+   - This index assesses the ratio of inter-cluster variance to intra-cluster variance.
+   - Higher values signify well-defined clusters with substantial separation between groups.
+   - The score of **134.6314** demonstrates a robust clustering structure.
+
+### Overall Assessment
+The clustering model shows strong results across all metrics, indicating effective grouping of the data points. 
+- **Strengths**:
+  - Distinct clusters with minimal overlap.
+  - High cluster compactness and good separation.
+- **Opportunities for Improvement**:
+  - Experiment with different numbers of clusters (`n_clusters`) to further enhance clustering quality.
+  - Refine the feature extraction process to test additional audio features.
+  - Validate the clusters against domain knowledge (e.g., known music genres) to ensure practical applicability.
+
+### Next Steps
+1. **Hyperparameter Tuning**: Adjust `n_clusters` and compare metric improvements.
+2. **Feature Refinement**: Normalize, scale, or add features for better representation of the audio data.
+3. **Algorithm Comparison**: Test alternative clustering algorithms such as DBSCAN or Gaussian Mixture Models to validate the results.

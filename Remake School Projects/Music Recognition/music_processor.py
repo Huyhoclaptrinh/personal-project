@@ -9,6 +9,7 @@ from sklearn.cluster import KMeans
 import mysql.connector
 from mysql.connector import Error
 import matplotlib.pyplot as plt
+from sklearn.metrics import davies_bouldin_score, calinski_harabasz_score, silhouette_score
 
 class MusicProcessor:
     def __init__(self, audio_folder, output_folder, db_config, database_name, drop_if_exists=False):
@@ -250,7 +251,27 @@ class MusicProcessor:
         cluster = self.kmeans.predict(new_features)[0]
         return self.cluster_to_genre.get(cluster, "Unknown")
 
+    def evaluate_clustering_extended(self, df):
+        """
+        Evaluate clustering quality using multiple metrics.
+        Requires `train_kmeans` to have been run.
+        """
+        if 'cluster' not in df.columns:
+            print("No clustering data available. Run train_kmeans first.")
+            return None
 
+        features = df[self.feature_columns]
+        labels = df['cluster']
+
+        # Calculate evaluation metrics
+        silhouette = silhouette_score(features, labels)
+        davies_bouldin = davies_bouldin_score(features, labels)
+        calinski_harabasz = calinski_harabasz_score(features, labels)
+
+        print(f"Silhouette Score: {silhouette:.4f}")
+        print(f"Davies-Bouldin Index: {davies_bouldin:.4f}")
+        print(f"Calinski-Harabasz Index: {calinski_harabasz:.4f}")
+        return silhouette, davies_bouldin, calinski_harabasz
 
     def plot_clustering(self, df, cluster_column='cluster', x_col='spectral_centroid_mean', y_col='spectral_bandwidth_mean'):
         plt.figure(figsize=(10, 6))
